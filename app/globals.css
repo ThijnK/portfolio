@@ -10,7 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --breakpoint-xs: 32rem;
+  --breakpoint-xs: 30rem;
   --text-xs: 0.85rem;
   --text-sm: 0.9rem;
 }

@@ -4,7 +4,7 @@ import Header from "@/components/header";
 export default function Projects() {
   return (
     <Article>
-      <Header>Projects</Header>
+      <Header>Resume</Header>
     </Article>
   );
 }
