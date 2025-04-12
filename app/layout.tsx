@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/app/nav";
+import { ThemeProvider } from "next-themes";
+import ThemeToggle from "@/app/theme-toggle";
+import SocialLinks from "@/app/social-links";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,17 +28,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex flex-col xs:flex-row min-h-screen p-6 sm:p-10 md:p-16 text-sm sm:text-[15.4px] font-[family-name:var(--font-geist-sans)]">
-          <Nav />
-          <main className="relative w-full mt-6 xs:mt-0 pt-6 xs:pt-0 xs:ml-6 sm:ml-10 md:ml-12 xs:pl-6 sm:pl-10 md:pl-12 border-foreground/30 h-fit max-w-2xl">
-            <div className="absolute w-full top-0 h-px bg-foreground/30 xs:w-px xs:h-full xs:left-0" />
-            {children}
-          </main>
-        </div>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <div className="flex flex-col xs:flex-row min-h-screen p-6 sm:p-10 md:p-20 text-sm sm:text-[15.4px] leading-6 font-[family-name:var(--font-geist-sans)]">
+            <Nav />
+            <main className="relative flex flex-col xs:flex-row h-fit max-w-2xl">
+              <div className="flex xs:flex-col items-center gap-2 my-4 xs:my-0 xs:mx-7 sm:mx-10 md:mx-12 xs:grow">
+                <div className="h-px w-full bg-foreground/15 xs:w-px xs:h-full xs:left-0" />
+                <SocialLinks className="flex xs:flex-col gap-2.5 w-fit" />
+              </div>
+              {/* <div className="absolute w-full top-0 h-px bg-foreground/15 xs:w-px xs:h-full xs:left-0"></div> */}
+              {children}
+            </main>
+            <ThemeToggle />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
