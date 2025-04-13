@@ -6,9 +6,9 @@ export default function Home() {
     <Article>
       <Header className="mb-1">Thijn Kroon</Header>
       <p>
-        I am a software engineer based in the Netherlands. Lorem ipsum, dolor
-        sit amet consectetur adipisicing elit. Minima saepe, distinctio quis,
-        praesentium fugit, ut dolor reiciendis inventore obcaecati quasi
+        Hi, I&apos;m a software engineer based in the Netherlands. Lorem ipsum,
+        dolor sit amet consectetur adipisicing elit. Minima saepe, distinctio
+        quis, praesentium fugit, ut dolor reiciendis inventore obcaecati quasi
         consectetur cum repellendus porro molestias incidunt id debitis. Cum,
         vero.
       </p>

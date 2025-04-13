@@ -5,6 +5,7 @@ import Nav from "@/app/nav";
 import { ThemeProvider } from "next-themes";
 import ThemeToggle from "@/app/theme-toggle";
 import SocialLinks from "@/app/social-links";
+import NoiseOverlay from "@/app/noise-overlay";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >
+        <NoiseOverlay />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="relative flex flex-col xs:flex-row xs:w-fit min-h-screen p-6 sm:p-10 md:p-20 text-sm sm:text-[15.4px] leading-6 font-sans ">
             <Nav />

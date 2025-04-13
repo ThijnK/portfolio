@@ -5,5 +5,7 @@ export default function Header({
   className,
   ...props
 }: HTMLAttributes<HTMLElement>) {
-  return <h1 className={cn("font-semibold", className)} {...props}></h1>;
+  return (
+    <h1 className={cn("font-semibold text-lg", className)} {...props}></h1>
+  );
 }
