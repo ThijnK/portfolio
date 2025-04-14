@@ -49,7 +49,7 @@ export default function NoiseOverlay() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none -z-10 dark:opacity-50"
+      className="fixed inset-0 pointer-events-none -z-10 dark:opacity-60"
     />
   );
 }

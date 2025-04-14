@@ -38,11 +38,8 @@ export default function RootLayout({
           <div className="relative flex flex-col xs:flex-row xs:w-fit min-h-screen p-6 sm:p-10 md:p-20 text-sm sm:text-[15.4px] leading-6 font-sans ">
             <Nav />
             <main className="relative flex flex-col xs:flex-row h-fit max-w-2xl">
-              <div className="flex xs:flex-col items-center gap-2 my-4 xs:my-0 xs:mx-7 sm:mx-10 md:mx-12 xs:grow">
-                <div className="h-px w-full bg-foreground/15 xs:w-px xs:h-full xs:left-0" />
-                <SocialLinks className="flex xs:flex-col gap-2.5 w-fit" />
-              </div>
-              {children}
+              <SocialLinks className="my-4 xs:my-0 xs:mx-7 sm:mx-10 md:mx-12" />
+              <div className="relative h-fit">{children}</div>
             </main>
             <ThemeToggle className="absolute right-6 sm:right-10 md:right-20" />
           </div>
