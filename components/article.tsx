@@ -67,13 +67,17 @@ export function Link({
   href: string;
 }) {
   return (
-    <span className={cn("relative", className)}>
+    <span
+      className={cn(
+        "relative after:absolute after:inset-y-0 after:-inset-x-px after:origin-bottom after:scale-y-[0.05] after:bg-current after:mix-blend-difference after:transition-transform after:duration-200 after:pointer-events-none hover:after:scale-none",
+        className
+      )}
+    >
       {external ? (
         <a target="_blank" rel="noopener noreferrer" {...props} />
       ) : (
         <NextLink {...props} />
       )}
-      <span className="absolute w-full h-px bottom-0 bg-foreground left-0" />
     </span>
   );
 }
