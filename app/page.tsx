@@ -1,21 +1,31 @@
-import { Article, Header, Paragraph } from "@/components/article";
+import { Article, Header, Link, Paragraph } from "@/components/article";
 
 export default function Home() {
   return (
     <Article>
       <Header className="mb-1">Thijn Kroon</Header>
       <Paragraph>
-        Hi, I&apos;m a software engineer based in the Netherlands. Lorem ipsum,
-        dolor sit amet consectetur adipisicing elit. Minima saepe, distinctio
-        quis, praesentium fugit, ut dolor reiciendis inventore obcaecati quasi
-        consectetur cum repellendus porro molestias incidunt id debitis. Cum,
-        vero.
+        Hi, I’m Thijn—a Computer Science master’s student at Utrecht University
+        with a broad interest in software development. I enjoy working across
+        the stack, from frontend to backend, using a variety of programming
+        languages and technologies. Outside of coding, I like to run, read, and
+        occasionally lose track of time gaming.
       </Paragraph>
       <Paragraph>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate
-        nobis perferendis ad suscipit maiores, molestiae omnis ipsa nisi, fuga
-        dicta voluptatum porro vero voluptatibus quos sit, fugiat aspernatur?
-        Reiciendis, accusamus!
+        Alongside my studies, I’ve been working as a freelance developer for
+        about four years, building everything from landing pages and dashboards
+        to Discord bots and automation tools. I graduated magna cum laude from
+        my bachelor’s in 2023, completing the honors program alongside it.
+      </Paragraph>
+      <Paragraph>
+        Feel free to explore my <Link href="/projects">projects</Link> to see
+        what I’ve been working on, or check out my{" "}
+        <Link href="/resume">resume</Link> to learn more about my background and
+        experience. Curious how this site was built? The source code’s up on{" "}
+        <Link href="https://github.com/ThijnK/portfolio" external>
+          GitHub
+        </Link>
+        .
       </Paragraph>
     </Article>
   );
