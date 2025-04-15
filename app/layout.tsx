@@ -3,9 +3,9 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/app/nav";
 import { ThemeProvider } from "next-themes";
-import ThemeToggle from "@/app/theme-toggle";
+import ThemeToggle from "@/components/theme-toggle";
 import SocialLinks from "@/app/social-links";
-import NoiseOverlay from "@/app/noise-overlay";
+import NoiseOverlay from "@/components/noise-overlay";
 
 const inter = Inter({
   variable: "--font-inter",
