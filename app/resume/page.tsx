@@ -1,5 +1,4 @@
-import Article from "@/components/article";
-import Header from "@/components/header";
+import { Article, Header } from "@/components/article";
 
 export default function Projects() {
   return (
