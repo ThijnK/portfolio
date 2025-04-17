@@ -66,18 +66,17 @@ export function Link({
   external?: boolean;
   href: string;
 }) {
+  const Comp = external ? "a" : NextLink;
+
   return (
-    <span
+    <Comp
       className={cn(
-        "relative after:absolute after:inset-y-0 after:-inset-x-px after:origin-bottom after:scale-y-[0.05] after:bg-current after:mix-blend-difference after:transition-transform after:duration-200 after:pointer-events-none hover:after:scale-none",
+        "relative hover:text-background hover:transition-colors hover:duration-150 after:absolute after:-z-[1] after:top-0 after:-bottom-px after:-inset-x-px after:origin-bottom after:scale-y-[0.05] after:bg-foreground after:transition-transform after:duration-150 after:pointer-events-none hover:after:scale-none",
         className
       )}
-    >
-      {external ? (
-        <a target="_blank" rel="noopener noreferrer" {...props} />
-      ) : (
-        <NextLink {...props} />
-      )}
-    </span>
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      {...props}
+    />
   );
 }
