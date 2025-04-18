@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 import Nav from "@/app/nav";
 import { ThemeProvider } from "next-themes";
@@ -14,6 +14,11 @@ const inter = Inter({
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+});
+
+const roboto = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin"],
 });
 
@@ -49,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${roboto.variable} antialiased`}
       >
         <NoiseOverlay />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
@@ -59,7 +64,7 @@ export default function RootLayout({
               <SocialLinks className="my-4 xs:my-0 xs:mx-7 sm:mx-10 md:mx-12" />
               <div className="relative h-fit">{children}</div>
             </main>
-            <ThemeToggle className="absolute right-6 sm:right-10 md:right-20" />
+            <ThemeToggle className="absolute right-6 sm:right-10 md:right-20 transform xs:translate-y-0.5" />
           </div>
         </ThemeProvider>
       </body>

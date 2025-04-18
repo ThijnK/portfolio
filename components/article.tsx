@@ -43,11 +43,22 @@ export function Article({
 
 export function Header({
   className,
+  level = 1,
   ...props
-}: HTMLAttributes<HTMLElement> & MotionProps) {
+}: HTMLAttributes<HTMLElement> &
+  MotionProps & {
+    level?: 1 | 2;
+  }) {
+  const Comp = level === 1 ? motion.h1 : motion.h2;
+
   return (
-    <motion.h1
-      className={cn("font-semibold text-lg", className)}
+    <Comp
+      className={cn(
+        "font-semibold",
+        level === 1 && "text-lg md:text-xl mb-2",
+        level === 2 && "text-base md:text-lg",
+        className
+      )}
       variants={childVariants}
       {...props}
     />

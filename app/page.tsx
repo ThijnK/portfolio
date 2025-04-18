@@ -3,7 +3,7 @@ import { Article, Header, Link, Paragraph } from "@/components/article";
 export default function Home() {
   return (
     <Article>
-      <Header className="mb-1">Thijn Kroon</Header>
+      <Header>Thijn Kroon</Header>
       <Paragraph>
         Hi, I’m Thijn—a Computer Science master’s student at Utrecht University
         with a broad interest in software development. I enjoy working across

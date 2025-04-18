@@ -21,6 +21,7 @@
   --color-accent: var(--accent);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
+  --font-roboto: var(--font-roboto);
   --breakpoint-xs: 30rem;
   --text-xs: 0.85rem;
   --text-sm: 0.9rem;
