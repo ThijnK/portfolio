@@ -19,24 +19,32 @@ export default function Project({
   link,
 }: {
   title: string;
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   logo: ProjectLogo;
-  link: string;
+  link?: string;
 }) {
+  const header = (
+    <Header level={2} className={cn("flex items-center gap-x-2", className)}>
+      <ProjectLogo logo={logo} title={title} />
+      <span>{title}</span>
+    </Header>
+  );
+
   return (
     <div className="flex flex-col gap-y-4">
-      <Header level={2}>
+      {link ? (
         <a
           href={link}
-          className={cn("flex items-center gap-x-2 w-fit", className)}
           target="_blank"
           rel="noopener noreferrer"
+          className="w-fit"
         >
-          <ProjectLogo logo={logo} title={title} />
-          <span>{title}</span>
+          {header}
         </a>
-      </Header>
+      ) : (
+        header
+      )}
       {children}
     </div>
   );

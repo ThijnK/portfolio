@@ -69,6 +69,19 @@ export function Paragraph(props: HTMLAttributes<HTMLElement> & MotionProps) {
   return <motion.p variants={childVariants} {...props} />;
 }
 
+export function List({
+  className,
+  ...props
+}: HTMLAttributes<HTMLElement> & MotionProps) {
+  return (
+    <motion.ul
+      className={cn("list-disc pl-5", className)}
+      variants={childVariants}
+      {...props}
+    />
+  );
+}
+
 export function Link({
   external,
   className,

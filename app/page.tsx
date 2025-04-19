@@ -25,6 +25,10 @@ export default function Home() {
         <Link href="https://github.com/ThijnK/portfolio" external>
           GitHub
         </Link>
+        . Layout inspired by{" "}
+        <Link href="https://shud.in/" external>
+          shud.in
+        </Link>
         .
       </Paragraph>
     </Article>
