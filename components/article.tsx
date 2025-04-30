@@ -75,11 +75,14 @@ export function List({
 }: HTMLAttributes<HTMLElement> & MotionProps) {
   return (
     <motion.ul
-      className={cn("list-disc pl-5", className)}
-      variants={childVariants}
+      className={cn("list-disc pl-5 space-y-0.5", className)}
       {...props}
     />
   );
+}
+
+export function ListItem(props: HTMLAttributes<HTMLElement> & MotionProps) {
+  return <motion.li variants={childVariants} {...props} />;
 }
 
 export function Link({
