@@ -107,3 +107,23 @@ export function Link({
     />
   );
 }
+
+export function ButtonLink({
+  className,
+  ...props
+}: AnchorHTMLAttributes<HTMLAnchorElement> & MotionProps) {
+  return (
+    <motion.div
+      variants={childVariants}
+      className="flex items-center justify-center"
+    >
+      <a
+        className={cn(
+          "inline-flex gap-x-2 relative items-center border border-foreground/90 px-3 py-1 transition-transform duration-150 active:scale-95 hover:transition-colors hover:text-background after:absolute after:-z-[1] after:inset-0 after:scale-y-0 after:origin-top after:bg-foreground/90 after:transition-transform after:duration-150 after:pointer-events-none hover:after:scale-none",
+          className
+        )}
+        {...props}
+      />
+    </motion.div>
+  );
+}
