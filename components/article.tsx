@@ -1,7 +1,13 @@
 "use client";
 
 import { cn } from "@/util/cn";
-import { AnchorHTMLAttributes, HTMLAttributes } from "react";
+import {
+  AnchorHTMLAttributes,
+  HTMLAttributes,
+  useRef,
+  useState,
+  useEffect,
+} from "react";
 import { motion, MotionProps } from "framer-motion";
 import NextLink from "next/link";
 
@@ -112,14 +118,55 @@ export function ButtonLink({
   className,
   ...props
 }: AnchorHTMLAttributes<HTMLAnchorElement> & MotionProps) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const origins = ["top", "right", "bottom", "left"] as const;
+  const [origin, setOrigin] = useState(0);
+
+  // Move the origin of the hover animation after each hover
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    const handleMouseEnter = () => {
+      timeoutId = setTimeout(() => {
+        setOrigin((prev) => (prev + 1) % origins.length);
+        timeoutId = null;
+      }, 200);
+    };
+
+    const handleMouseLeave = () => {
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+      }
+    };
+
+    if (ref.current) {
+      const target = ref.current;
+      target.addEventListener("mouseenter", handleMouseEnter);
+      target.addEventListener("mouseleave", handleMouseLeave);
+
+      return () => {
+        target.removeEventListener("mouseenter", handleMouseEnter);
+        target.removeEventListener("mouseleave", handleMouseLeave);
+        if (timeoutId !== null) {
+          clearTimeout(timeoutId);
+        }
+      };
+    }
+  }, [origins.length]);
+
   return (
     <motion.div
       variants={childVariants}
       className="flex items-center justify-center"
     >
       <a
+        ref={ref}
         className={cn(
-          "inline-flex gap-x-2 relative items-center border border-foreground/90 px-3 py-1 transition-transform duration-150 active:scale-95 hover:transition-colors hover:text-background after:absolute after:-z-[1] after:inset-0 after:scale-y-0 after:origin-top after:bg-foreground/90 after:transition-transform after:duration-150 after:pointer-events-none hover:after:scale-none",
+          "inline-flex gap-x-2 relative items-center border border-foreground/90 px-3 py-1 transition-transform duration-200 active:scale-95 hover:transition-colors hover:text-background after:absolute after:-z-[1] after:inset-0 after:bg-foreground/90 after:transition-transform after:duration-200 after:pointer-events-none hover:after:scale-none",
+          origins[origin] === "top" && "after:scale-y-0 after:origin-top",
+          origins[origin] === "right" && "after:scale-x-0 after:origin-right",
+          origins[origin] === "bottom" && "after:scale-y-0 after:origin-bottom",
+          origins[origin] === "left" && "after:scale-x-0 after:origin-left",
           className
         )}
         {...props}
