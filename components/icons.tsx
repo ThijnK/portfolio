@@ -18,14 +18,14 @@ export const Icons = {
   experience: FaBriefcase,
 };
 
-export type IconType = keyof typeof Icons;
+export type IconKey = keyof typeof Icons;
 
 export const Icon = ({
   icon,
   className,
   ...props
 }: {
-  icon: IconType;
+  icon: IconKey;
 } & React.ComponentPropsWithoutRef<"svg">) => {
   const Component = Icons[icon];
   return <Component className={className} {...props} />;

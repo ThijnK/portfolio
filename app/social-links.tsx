@@ -1,32 +1,36 @@
 "use client";
 
-import { FaDiscord, FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { HTMLAttributes, useEffect, useRef, useState } from "react";
 import { cn } from "@/util/cn";
+import { Icon, IconKey } from "@/components/icons";
 
-const links = [
+const links: {
+  href: string;
+  label: string;
+  icon: IconKey;
+}[] = [
   {
     href: "https://github.com/ThijnK",
     label: "GitHub",
-    icon: FaGithub,
+    icon: "github",
   },
   {
     href: "https://www.linkedin.com/in/thijn-kroon",
     label: "LinkedIn",
-    icon: FaLinkedin,
+    icon: "linkedin",
   },
   {
     href: "mailto:mail@thijnkroon.nl",
     label: "Email",
-    icon: FaEnvelope,
+    icon: "email",
   },
   {
     href: "https://discord.com/users/259389639784267786",
     label: "Discord",
-    icon: FaDiscord,
+    icon: "discord",
   },
-];
+] as const;
 
 /** Vertical padding of page's content, as defined by the styling of the main element in RootLayout */
 const getContentPadding = (windowWidth: number) => {
@@ -101,7 +105,7 @@ export default function SocialLinks({
             aria-label={link.label}
             className="text-foreground/60 hover:text-foreground transition-colors duration-150"
           >
-            <link.icon className="size-[19px]" />
+            <Icon icon={link.icon} className="size-[19px] shrink-0" />
           </a>
         ))}
       </div>

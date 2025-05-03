@@ -12,7 +12,7 @@ import {
 import { motion, MotionProps } from "framer-motion";
 import NextLink from "next/link";
 import Image from "next/image";
-import { Icon, IconType } from "@/components/icons";
+import { Icon, IconKey } from "@/components/icons";
 
 const containerVariants = {
   hidden: {},
@@ -93,7 +93,7 @@ function SectionBadge(badge: {
   label?: string;
   width?: number;
   height?: number;
-  icon?: IconType;
+  icon?: IconKey;
   className?: string;
 }) {
   if (!badge) return <></>;
