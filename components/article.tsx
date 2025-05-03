@@ -36,9 +36,11 @@ const childVariants = {
 };
 
 export function Article({
+  title,
   className,
+  children,
   ...props
-}: HTMLAttributes<HTMLElement> & MotionProps) {
+}: { title: string } & HTMLAttributes<HTMLElement> & MotionProps) {
   return (
     <motion.article
       className={cn("flex flex-col gap-y-6", className)}
@@ -46,7 +48,10 @@ export function Article({
       animate="visible"
       variants={containerVariants}
       {...props}
-    />
+    >
+      <Header level={1}>{title}</Header>
+      <div className="flex flex-col gap-y-16">{children}</div>
+    </motion.article>
   );
 }
 
@@ -58,20 +63,23 @@ export function Section({
   href,
   ...props
 }: {
-  title: string;
+  title?: string;
   badge?: ComponentProps<typeof SectionBadge>;
   href?: string;
 } & HTMLAttributes<HTMLElement>) {
-  const header = (
+  const hasHeader = !!title || !!badge;
+  const header = hasHeader ? (
     <Header level={2} className="flex items-center gap-x-2">
       <SectionBadge {...badge} />
       <span>{title}</span>
     </Header>
+  ) : (
+    <></>
   );
 
   return (
-    <section className={cn("flex flex-col gap-y-4", className)} {...props}>
-      {href ? (
+    <section className={cn("flex flex-col gap-y-5", className)} {...props}>
+      {hasHeader && href ? (
         <a
           href={href}
           target="_blank"

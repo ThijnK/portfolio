@@ -27,6 +27,6 @@ export const Icon = ({
 }: {
   icon: IconKey;
 } & React.ComponentPropsWithoutRef<"svg">) => {
-  const Component = Icons[icon];
-  return <Component className={className} {...props} />;
+  const Comp = Icons[icon];
+  return <Comp className={className} {...props} />;
 };
