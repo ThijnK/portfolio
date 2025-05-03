@@ -1,0 +1,32 @@
+import {
+  FaBriefcase,
+  FaBuffer,
+  FaDiscord,
+  FaEnvelope,
+  FaGithub,
+  FaLinkedin,
+} from "react-icons/fa6";
+import { PiPathBold } from "react-icons/pi";
+
+export const Icons = {
+  discord: FaDiscord,
+  email: FaEnvelope,
+  github: FaGithub,
+  linkedin: FaLinkedin,
+  buffer: FaBuffer,
+  maze: PiPathBold,
+  experience: FaBriefcase,
+};
+
+export type IconType = keyof typeof Icons;
+
+export const Icon = ({
+  icon,
+  className,
+  ...props
+}: {
+  icon: IconType;
+} & React.ComponentPropsWithoutRef<"svg">) => {
+  const Component = Icons[icon];
+  return <Component className={className} {...props} />;
+};

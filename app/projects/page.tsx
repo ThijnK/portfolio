@@ -1,4 +1,3 @@
-import Project from "@/app/projects/project";
 import {
   Article,
   Header,
@@ -6,9 +5,8 @@ import {
   List,
   ListItem,
   Paragraph,
+  Section,
 } from "@/components/article";
-import { FaBuffer, FaDiscord } from "react-icons/fa6";
-import { PiPathBold } from "react-icons/pi";
 
 export default function Projects() {
   return (
@@ -16,11 +14,13 @@ export default function Projects() {
       <Header>Projects</Header>
 
       <div className="flex flex-col gap-y-12 space-y-4">
-        <Project
+        <Section
           title="Alpha Warden"
-          className="font-bold"
-          logo={{ src: "/projects/alpha-warden.png" }}
-          link="https://alphawarden.com"
+          badge={{
+            src: "/projects/alpha-warden.png",
+            label: "Alpha Warden Logo",
+          }}
+          href="https://alphawarden.com"
         >
           <Paragraph>
             Alpha Warden is a Discord moderation bot trusted by 300+ servers to
@@ -37,13 +37,12 @@ export default function Projects() {
             deployment, hosting, and ongoing maintenance. It’s been a great
             exercise in building and operating a production-ready system.
           </Paragraph>
-        </Project>
+        </Section>
 
-        <Project
+        <Section
           title="MAZE"
-          className="uppercase font-medium"
-          logo={{ icon: PiPathBold }}
-          link="https://github.com/ThijnK/maze"
+          badge={{ icon: "maze" }}
+          href="https://github.com/ThijnK/maze"
         >
           <Paragraph>
             MAZE is a dynamic symbolic execution engine for automated Java test
@@ -58,13 +57,15 @@ export default function Projects() {
             thesis focuses on comparing the effectiveness of these strategies in
             achieving high code- and mutation coverage.
           </Paragraph>
-        </Project>
+        </Section>
 
-        <Project
+        <Section
           title="SecureSECO DAO"
-          className="font-medium"
-          logo={{ src: "/projects/secureseco-dao.png" }}
-          link="https://dao.secureseco.org"
+          badge={{
+            src: "/projects/secureseco-dao.png",
+            label: "SecureSECO DAO Logo",
+          }}
+          href="https://dao.secureseco.org"
         >
           <Paragraph>
             As part of my bachelor thesis, I worked in a team of eight to
@@ -75,12 +76,12 @@ export default function Projects() {
             . My main focus was developing the web application and documentation
             site. Our work earned 2nd place in the DAO Global Hackathon 2023.
           </Paragraph>
-        </Project>
+        </Section>
 
-        <Project
+        <Section
           title="Discord Bot Template"
-          logo={{ icon: FaDiscord }}
-          link="https://github.com/ThijnK/discord-bot-template-ts"
+          badge={{ icon: "discord" }}
+          href="https://github.com/ThijnK/discord-bot-template-ts"
         >
           <Paragraph>
             Having built my fair share of Discord bots, I developed a preferred
@@ -90,9 +91,9 @@ export default function Projects() {
             commands, event handling, pagination, and more, all written in
             TypeScript and now updated to run on Deno 2.
           </Paragraph>
-        </Project>
+        </Section>
 
-        <Project title="Other Projects" logo={{ icon: FaBuffer }}>
+        <Section title="Other Projects" badge={{ icon: "buffer" }}>
           <List>
             <ListItem>Numerous automations and web scraping tools</ListItem>
             <ListItem>
@@ -135,7 +136,7 @@ export default function Projects() {
               </List>
             </ListItem>
           </List>
-        </Project>
+        </Section>
       </div>
     </Article>
   );

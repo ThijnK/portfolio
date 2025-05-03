@@ -7,9 +7,12 @@ import {
   useRef,
   useState,
   useEffect,
+  ComponentProps,
 } from "react";
 import { motion, MotionProps } from "framer-motion";
 import NextLink from "next/link";
+import Image from "next/image";
+import { Icon, IconType } from "@/components/icons";
 
 const containerVariants = {
   hidden: {},
@@ -45,6 +48,75 @@ export function Article({
       {...props}
     />
   );
+}
+
+export function Section({
+  title,
+  children,
+  className,
+  badge,
+  href,
+  ...props
+}: {
+  title: string;
+  badge?: ComponentProps<typeof SectionBadge>;
+  href?: string;
+} & HTMLAttributes<HTMLElement>) {
+  const header = (
+    <Header level={2} className="flex items-center gap-x-2">
+      <SectionBadge {...badge} />
+      <span>{title}</span>
+    </Header>
+  );
+
+  return (
+    <section className={cn("flex flex-col gap-y-4", className)} {...props}>
+      {href ? (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-fit"
+        >
+          {header}
+        </a>
+      ) : (
+        header
+      )}
+      {children}
+    </section>
+  );
+}
+
+function SectionBadge(badge: {
+  src?: string;
+  label?: string;
+  width?: number;
+  height?: number;
+  icon?: IconType;
+  className?: string;
+}) {
+  if (!badge) return <></>;
+  if (badge.src)
+    return (
+      <Image
+        src={badge.src}
+        alt={badge.label ?? "Section Badge"}
+        width={badge.width || 512}
+        height={badge.height || 512}
+        className={cn("inline-block size-8", badge.className)}
+      />
+    );
+
+  if (badge.icon)
+    return (
+      <Icon
+        icon={badge.icon}
+        className={cn("size-6 shrink-0 text-foreground/80", badge.className)}
+      />
+    );
+
+  return <></>;
 }
 
 export function Header({
