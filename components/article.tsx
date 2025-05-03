@@ -50,7 +50,7 @@ export function Article({
       {...props}
     >
       <Header level={1}>{title}</Header>
-      <div className="flex flex-col gap-y-16">{children}</div>
+      <div className="flex flex-col gap-y-16 items-start">{children}</div>
     </motion.article>
   );
 }
@@ -69,7 +69,7 @@ export function Section({
 } & HTMLAttributes<HTMLElement>) {
   const hasHeader = !!title || !!badge;
   const header = hasHeader ? (
-    <Header level={2} className="flex items-center gap-x-2">
+    <Header level={2} className="flex items-center gap-x-3">
       <SectionBadge {...badge} />
       <span>{title}</span>
     </Header>
@@ -153,6 +153,12 @@ export function Header({
 
 export function Paragraph(props: HTMLAttributes<HTMLElement> & MotionProps) {
   return <motion.p variants={childVariants} {...props} />;
+}
+
+export function Div(
+  props: HTMLAttributes<HTMLElement> & MotionProps & { className?: string }
+) {
+  return <motion.div variants={childVariants} {...props} />;
 }
 
 export function List({

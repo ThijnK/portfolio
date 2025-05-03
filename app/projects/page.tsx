@@ -89,7 +89,7 @@ export default function Projects() {
         </Paragraph>
       </Section>
 
-      <Section title="Other Projects" badge={{ icon: "buffer" }}>
+      <Section title="Other Projects" badge={{ icon: "projects" }}>
         <List>
           <ListItem>Numerous automations and web scraping tools</ListItem>
           <ListItem>

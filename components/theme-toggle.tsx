@@ -3,7 +3,7 @@
 import { cn } from "@/util/cn";
 import { useTheme } from "next-themes";
 import { HTMLAttributes } from "react";
-import { LuMoon, LuSun } from "react-icons/lu";
+import { Moon, Sun } from "lucide-react";
 
 export default function ThemeToggle({
   className,
@@ -22,8 +22,8 @@ export default function ThemeToggle({
       )}
       {...props}
     >
-      <LuSun className="h-6 w-[1.3rem] shrink-0 transition-all duration-200 dark:rotate-90 dark:opacity-0" />
-      <LuMoon className="absolute size-5 shrink-0 -rotate-90 opacity-0 transition-all duration-200 dark:rotate-0 dark:opacity-100" />
+      <Sun className="h-6 w-[1.3rem] shrink-0 transition-all duration-200 dark:rotate-90 dark:opacity-0" />
+      <Moon className="absolute size-5 shrink-0 -rotate-90 opacity-0 transition-all duration-200 dark:rotate-0 dark:opacity-100" />
       <span className="sr-only">Toggle theme</span>
     </button>
   );
