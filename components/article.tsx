@@ -162,11 +162,11 @@ export function ButtonLink({
       <a
         ref={ref}
         className={cn(
-          "inline-flex gap-x-2 relative items-center border border-foreground/90 px-3 py-1 transition-transform duration-200 active:scale-95 hover:transition-colors hover:text-background after:absolute after:-z-[1] after:inset-0 after:bg-foreground/90 after:transition-transform after:duration-200 after:pointer-events-none hover:after:scale-none",
-          origins[origin] === "top" && "after:scale-y-0 after:origin-top",
-          origins[origin] === "right" && "after:scale-x-0 after:origin-right",
-          origins[origin] === "bottom" && "after:scale-y-0 after:origin-bottom",
-          origins[origin] === "left" && "after:scale-x-0 after:origin-left",
+          "inline-flex gap-x-2 relative overflow-hidden items-center border border-foreground/90 px-3 py-1 transition-transform duration-200 active:scale-95 hover:transition-colors hover:text-background after:absolute after:-z-[1] after:inset-0 after:bg-foreground/90 after:transition-transform after:duration-200 after:pointer-events-none hover:after:translate-0",
+          origins[origin] === "top" && "after:-translate-y-full",
+          origins[origin] === "right" && "after:translate-x-full",
+          origins[origin] === "bottom" && "after:translate-y-full",
+          origins[origin] === "left" && "after:-translate-x-full",
           className
         )}
         {...props}
