@@ -1,9 +1,10 @@
-import { Briefcase, Download, Layers } from "lucide-react";
+import { Briefcase, Download, GraduationCap, Layers } from "lucide-react";
 import { SVGProps } from "react";
 
 const Icons = {
   projects: Layers,
   experience: Briefcase,
+  education: GraduationCap,
   download: Download,
   discord: (props: SVGProps<SVGSVGElement>) => (
     // <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
