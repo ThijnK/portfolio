@@ -41,7 +41,7 @@ export default function Projects() {
           <WithSidebar thick>
             <Split left="Utrecht University" right="2023 - 2025" bold />
             <Split left="MSc Computer Science" right="Master" italic />
-            <p>Magna Cum Laude (8.55/10)</p>
+            <p>Magna Cum Laude (8.61/10)</p>
           </WithSidebar>
           <WithSidebar>
             <List>
@@ -51,8 +51,8 @@ export default function Projects() {
                 Language Based Security (9.57), Cloud & Edge Computing (9.1).
               </li>
               <li>
-                Thesis: Symbolic execution for automated Java test generation
-                (8.8).
+                Thesis: Dynamic symbolic execution for automated Java test
+                generation (8.8).
               </li>
             </List>
           </WithSidebar>
