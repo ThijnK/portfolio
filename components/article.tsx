@@ -1,6 +1,6 @@
 "use client";
 
-import { type MotionProps, motion } from "framer-motion";
+import { cubicBezier, type MotionProps, motion } from "framer-motion";
 import Image from "next/image";
 import NextLink from "next/link";
 import {
@@ -19,7 +19,7 @@ const containerVariants = {
   visible: {
     transition: {
       staggerChildren: 0.04,
-      ease: [0.2, 0.1, 0.3, 1],
+      ease: cubicBezier(0.2, 0.1, 0.3, 1),
     },
   },
 };
