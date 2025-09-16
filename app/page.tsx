@@ -24,11 +24,11 @@ export default function Home() {
           <Link href="/resume">resume</Link> to learn more about my background
           and experience. Curious how this site was built? The source code’s up
           on{" "}
-          <Link href="https://github.com/ThijnK/portfolio" external>
+          <Link external href="https://github.com/ThijnK/portfolio">
             GitHub
           </Link>
           . Layout inspired by{" "}
-          <Link href="https://shud.in/" external>
+          <Link external href="https://shud.in/">
             shud.in
           </Link>
           .

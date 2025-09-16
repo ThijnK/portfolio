@@ -1,18 +1,18 @@
 "use client";
 
-import { cn } from "@/util/cn";
+import { type MotionProps, motion } from "framer-motion";
+import Image from "next/image";
+import NextLink from "next/link";
 import {
-  AnchorHTMLAttributes,
-  HTMLAttributes,
+  type AnchorHTMLAttributes,
+  type ComponentProps,
+  type HTMLAttributes,
+  useEffect,
   useRef,
   useState,
-  useEffect,
-  ComponentProps,
 } from "react";
-import { motion, MotionProps } from "framer-motion";
-import NextLink from "next/link";
-import Image from "next/image";
-import { Icon, IconKey } from "@/components/icons";
+import { Icon, type IconKey } from "@/components/icons";
+import { cn } from "@/util/cn";
 
 const containerVariants = {
   hidden: {},
@@ -43,14 +43,14 @@ export function Article({
 }: { title: string } & HTMLAttributes<HTMLElement> & MotionProps) {
   return (
     <motion.article
+      animate="visible"
       className={cn("flex flex-col gap-y-6", className)}
       initial="hidden"
-      animate="visible"
       variants={containerVariants}
       {...props}
     >
       <Header level={1}>{title}</Header>
-      <div className="flex flex-col gap-y-16 items-start">{children}</div>
+      <div className="flex flex-col items-start gap-y-16">{children}</div>
     </motion.article>
   );
 }
@@ -69,22 +69,20 @@ export function Section({
 } & HTMLAttributes<HTMLElement>) {
   const hasHeader = !!title || !!badge;
   const header = hasHeader ? (
-    <Header level={2} className="flex items-center gap-x-3">
+    <Header className="flex items-center gap-x-3" level={2}>
       <SectionBadge {...badge} />
       <span>{title}</span>
     </Header>
-  ) : (
-    <></>
-  );
+  ) : null;
 
   return (
     <section className={cn("flex flex-col gap-y-5", className)} {...props}>
       {hasHeader && href ? (
         <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
           className="w-fit"
+          href={href}
+          rel="noopener noreferrer"
+          target="_blank"
         >
           {header}
         </a>
@@ -104,27 +102,27 @@ function SectionBadge(badge: {
   icon?: IconKey;
   className?: string;
 }) {
-  if (!badge) return <></>;
+  if (!badge) return null;
   if (badge.src)
     return (
       <Image
-        src={badge.src}
         alt={badge.label ?? "Section Badge"}
-        width={badge.width || 512}
-        height={badge.height || 512}
         className={cn("inline-block size-8", badge.className)}
+        height={badge.height || 512}
+        src={badge.src}
+        width={badge.width || 512}
       />
     );
 
   if (badge.icon)
     return (
       <Icon
-        icon={badge.icon}
         className={cn("size-6 shrink-0 text-foreground/80", badge.className)}
+        icon={badge.icon}
       />
     );
 
-  return <></>;
+  return null;
 }
 
 export function Header({
@@ -141,7 +139,7 @@ export function Header({
     <Comp
       className={cn(
         "font-semibold",
-        level === 1 && "text-lg md:text-xl mb-2",
+        level === 1 && "mb-2 text-lg md:text-xl",
         level === 2 && "text-base md:text-lg",
         className
       )}
@@ -167,7 +165,7 @@ export function List({
 }: HTMLAttributes<HTMLElement> & MotionProps) {
   return (
     <motion.ul
-      className={cn("list-disc pl-5 space-y-0.5", className)}
+      className={cn("list-disc space-y-0.5 pl-5", className)}
       {...props}
     />
   );
@@ -190,11 +188,11 @@ export function Link({
   return (
     <Comp
       className={cn(
-        "relative hover:text-background hover:transition-colors hover:duration-150 after:absolute after:-z-[1] after:top-0 after:-bottom-px after:-inset-x-px after:origin-bottom after:scale-y-[0.05] after:bg-foreground after:transition-transform after:duration-150 after:pointer-events-none hover:after:scale-none",
+        "after:-z-[1] after:-bottom-px after:-inset-x-px relative after:pointer-events-none after:absolute after:top-0 after:origin-bottom after:scale-y-[0.05] after:bg-foreground after:transition-transform after:duration-150 hover:text-background hover:transition-colors hover:duration-150 hover:after:scale-none",
         className
       )}
-      target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
+      target={external ? "_blank" : undefined}
       {...props}
     />
   );
@@ -242,19 +240,20 @@ export function ButtonLink({
 
   return (
     <motion.div
-      variants={childVariants}
       className="flex items-center justify-center"
+      variants={childVariants}
     >
+      {/** biome-ignore lint/nursery/useAnchorHref: <href is provided in props> */}
       <a
-        ref={ref}
         className={cn(
-          "inline-flex gap-x-2 relative overflow-hidden items-center border border-foreground/90 px-3 py-1 transition-transform duration-200 active:scale-95 hover:transition-colors hover:text-background after:absolute after:-z-[1] after:inset-0 after:bg-foreground/90 after:transition-transform after:duration-200 after:pointer-events-none hover:after:translate-0",
+          "after:-z-[1] hover:after:translate-0 relative inline-flex items-center gap-x-2 overflow-hidden border border-foreground/90 px-3 py-1 transition-transform duration-200 after:pointer-events-none after:absolute after:inset-0 after:bg-foreground/90 after:transition-transform after:duration-200 hover:text-background hover:transition-colors active:scale-95",
           origins[origin] === "top" && "after:-translate-y-full",
           origins[origin] === "right" && "after:translate-x-full",
           origins[origin] === "bottom" && "after:translate-y-full",
           origins[origin] === "left" && "after:-translate-x-full",
           className
         )}
+        ref={ref}
         {...props}
       />
     </motion.div>

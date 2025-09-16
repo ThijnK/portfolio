@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@/util/cn";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
+import { cn } from "@/util/cn";
 
 const items = [
   { href: "/", label: "about" },
@@ -16,19 +16,19 @@ export default function Nav(props: HTMLAttributes<HTMLElement>) {
 
   return (
     <aside {...props}>
-      <nav className="sm:my-1 xs:text-right font-mono font-medium">
-        <ul className="flex xs:flex-col gap-x-4 gap-y-2 w-full xs:w-fit">
+      <nav className="xs:text-right font-medium font-mono sm:my-1">
+        <ul className="flex w-full xs:w-fit xs:flex-col gap-x-4 gap-y-2">
           {items.map(({ href, label }) => {
             const isActive = pathname === href;
 
             return (
               <li key={href}>
                 <Link
-                  href={href}
                   className={cn(
-                    "text-foreground/60 hover:text-foreground transition-colors duration-150",
+                    "text-foreground/60 transition-colors duration-150 hover:text-foreground",
                     isActive && "text-foreground"
                   )}
+                  href={href}
                 >
                   {label}
                 </Link>

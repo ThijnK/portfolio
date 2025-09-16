@@ -1,18 +1,18 @@
+import type { MotionProps } from "framer-motion";
+import type { HTMLAttributes } from "react";
 import { Article, ButtonLink, Div, List, Section } from "@/components/article";
 import { Icon } from "@/components/icons";
 import { cn } from "@/util/cn";
-import { MotionProps } from "framer-motion";
-import { HTMLAttributes } from "react";
 
 export default function Projects() {
   return (
     <Article title="Resume">
-      <ButtonLink href="/resume/CV_Thijn.pdf" download>
-        <Icon icon="download" className="size-5 shrink-0" />
+      <ButtonLink download href="/resume/CV_Thijn.pdf">
+        <Icon className="size-5 shrink-0" icon="download" />
         <span>Full Version (PDF)</span>
       </ButtonLink>
 
-      <Section title="Experience" badge={{ icon: "experience" }}>
+      <Section badge={{ icon: "experience" }} title="Experience">
         <div>
           <WithSidebar thick>
             <div className="flex items-center justify-between font-bold">
@@ -36,11 +36,11 @@ export default function Projects() {
         </div>
       </Section>
 
-      <Section title="Education" badge={{ icon: "education" }}>
+      <Section badge={{ icon: "education" }} title="Education">
         <div>
           <WithSidebar thick>
-            <Split left="Utrecht University" right="2023 - 2025" bold />
-            <Split left="MSc Computer Science" right="Master" italic />
+            <Split bold left="Utrecht University" right="2023 - 2025" />
+            <Split italic left="MSc Computer Science" right="Master" />
             <p>Magna Cum Laude (8.61/10)</p>
           </WithSidebar>
           <WithSidebar>
@@ -60,8 +60,8 @@ export default function Projects() {
 
         <div>
           <WithSidebar thick>
-            <Split left="Utrecht University" right="2020 - 2023" bold />
-            <Split left="BSc Computer Science" right="Bachelor" italic />
+            <Split bold left="Utrecht University" right="2020 - 2023" />
+            <Split italic left="BSc Computer Science" right="Bachelor" />
             <p>Magna Cum Laude (8.96/10)</p>
           </WithSidebar>
           <WithSidebar>
@@ -83,11 +83,11 @@ export default function Projects() {
 
         <div>
           <WithSidebar thick>
-            <Split left="Minkema College" right="2014 - 2020" bold />
+            <Split bold left="Minkema College" right="2014 - 2020" />
             <Split
+              italic
               left="E&M with Maths B and Informatics"
               right="Secondary Education"
-              italic
             />
           </WithSidebar>
         </div>
@@ -112,7 +112,7 @@ function WithSidebar({
     >
       <div
         className={cn(
-          "absolute top-0 left-0 w-px h-full bg-foreground/15",
+          "absolute top-0 left-0 h-full w-px bg-foreground/15",
           thick && "w-[3px]"
         )}
       />
@@ -142,7 +142,7 @@ function Split({
       {...props}
     >
       <p className={cn(italic && "italic")}>{left}</p>
-      <p className="text-sm text-right">{right}</p>
+      <p className="text-right text-sm">{right}</p>
     </div>
   );
 }

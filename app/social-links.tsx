@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HTMLAttributes, useEffect, useRef, useState } from "react";
+import { type HTMLAttributes, useEffect, useRef, useState } from "react";
+import { Icon, type IconKey } from "@/components/icons";
 import { cn } from "@/util/cn";
-import { Icon, IconKey } from "@/components/icons";
 
 const links: {
   href: string;
@@ -52,7 +52,7 @@ export default function SocialLinks({
     const updateHeight = () => {
       const contentHeight = divRef.current?.nextElementSibling?.clientHeight;
       const linksHeight = linksRef.current?.clientHeight;
-      if (!contentHeight || !linksHeight) return;
+      if (!(contentHeight && linksHeight)) return;
 
       const maxHeight =
         window.innerHeight -
@@ -86,26 +86,26 @@ export default function SocialLinks({
       {...props}
       ref={divRef}
     >
-      <div className="h-px w-full bg-foreground/15 xs:hidden" />
+      <div className="xs:hidden h-px w-full bg-foreground/15" />
       <motion.div
-        className="bg-foreground/15 w-px hidden xs:block"
         animate={{ height }}
+        className="xs:block hidden w-px bg-foreground/15"
         transition={{
           duration: 0.4,
           ease: [0.2, 0.1, 0.3, 1],
         }}
       />
-      <div ref={linksRef} className="flex xs:flex-col gap-2.5 w-fit xs:pt-2">
+      <div className="flex w-fit xs:flex-col gap-2.5 xs:pt-2" ref={linksRef}>
         {links.map((link) => (
           <a
-            key={link.label}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
             aria-label={link.label}
-            className="text-foreground/60 hover:text-foreground transition-colors duration-150"
+            className="text-foreground/60 transition-colors duration-150 hover:text-foreground"
+            href={link.href}
+            key={link.label}
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            <Icon icon={link.icon} className="size-[19px] shrink-0" />
+            <Icon className="size-[19px] shrink-0" icon={link.icon} />
           </a>
         ))}
       </div>

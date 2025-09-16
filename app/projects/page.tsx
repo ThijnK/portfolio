@@ -11,12 +11,12 @@ export default function Projects() {
   return (
     <Article title="Projects">
       <Section
-        title="Alpha Warden"
         badge={{
           src: "/projects/alpha-warden.png",
           label: "Alpha Warden Logo",
         }}
         href="https://alphawarden.com"
+        title="Alpha Warden"
       >
         <Paragraph>
           Alpha Warden is a Discord moderation bot trusted by 300+ servers to
@@ -36,9 +36,9 @@ export default function Projects() {
       </Section>
 
       <Section
-        title="MAZE"
         badge={{ icon: "maze" }}
         href="https://github.com/ThijnK/maze"
+        title="MAZE"
       >
         <Paragraph>
           MAZE is a dynamic symbolic execution engine for automated Java test
@@ -56,17 +56,17 @@ export default function Projects() {
       </Section>
 
       <Section
-        title="SecureSECO DAO"
         badge={{
           src: "/projects/secureseco-dao.png",
           label: "SecureSECO DAO Logo",
         }}
         href="https://dao.secureseco.org"
+        title="SecureSECO DAO"
       >
         <Paragraph>
           As part of my bachelor thesis, I worked in a team of eight to develop
           SecureSECO DAO—a decentralized autonomous organization for{" "}
-          <Link href="https://secureseco.org" external>
+          <Link external href="https://secureseco.org">
             SecureSECO
           </Link>
           . My main focus was developing the web application and documentation
@@ -75,9 +75,9 @@ export default function Projects() {
       </Section>
 
       <Section
-        title="Discord Bot Template"
         badge={{ icon: "discord" }}
         href="https://github.com/ThijnK/discord-bot-template-ts"
+        title="Discord Bot Template"
       >
         <Paragraph>
           Having built my fair share of Discord bots, I developed a preferred
@@ -89,11 +89,11 @@ export default function Projects() {
         </Paragraph>
       </Section>
 
-      <Section title="Other Projects" badge={{ icon: "projects" }}>
+      <Section badge={{ icon: "projects" }} title="Other Projects">
         <List>
           <ListItem>Numerous automations and web scraping tools</ListItem>
           <ListItem>
-            <Link href="https://github.com/ThijnK/three-boids" external>
+            <Link external href="https://github.com/ThijnK/three-boids">
               Three.js Boids
             </Link>{" "}
             simulation in Next.js
@@ -101,8 +101,8 @@ export default function Projects() {
           <ListItem>Email inbox aggregator service (IMAP-based)</ListItem>
           <ListItem>
             <Link
-              href="https://github.com/ThijnK/discord-server-cleaner"
               external
+              href="https://github.com/ThijnK/discord-server-cleaner"
             >
               Discord Server Cleaner
             </Link>{" "}
@@ -123,7 +123,7 @@ export default function Projects() {
                 Bounded symbolic verification tool for GCL in Haskell
               </ListItem>
               <ListItem>
-                <Link href="https://github.com/ThijnK/Shoot-Em-Up" external>
+                <Link external href="https://github.com/ThijnK/Shoot-Em-Up">
                   Shoot-em-up
                 </Link>{" "}
                 game in Haskell
