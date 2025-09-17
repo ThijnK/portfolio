@@ -3,42 +3,43 @@
 import { motion, useMotionValue, useSpring, type Variant } from "framer-motion";
 import React, { type ReactNode, useCallback, useEffect, useState } from "react";
 
-type VariantConfig = {
-  animation: Variant;
-  selectors?: string[];
-};
-
-type CursorVariants = {
-  default: Omit<VariantConfig, "selectors">;
-  exit: Omit<VariantConfig, "selectors">;
-  pointer: VariantConfig;
-  [key: string]: VariantConfig;
-};
-
 /**
- * Configuration for cursor variants.
+ * Custom cursor component that follows the mouse and changes appearance based on context.
+ *
+ * ### Usage
+ *
+ * Just wrap your app with the `CursorWrapper` component:
+ * ```
+ * <CursorWrapper>
+ *   ... your app ...
+ * </CursorWrapper>
+ * ```
+ *
+ * ### Configuration for cursor variants
+ *
+ * Variants define different cursor states with specific animation properties and query selectors that trigger them.
  *
  * To add a new variant:
- * 1. Add a new key to this object with animation properties
+ * 1. Add a new key to this object with Framer Motion animation properties
  * 2. Optionally add query selectors that should trigger this variant
  * 3. The variant will automatically be available for use
+ *
+ * To make the cursor respond when hovering a particular element, you can use either:
+ * - A class name: `custom-cursor-{variantName}` (e.g., `custom-cursor-pointer`)
+ * - A data attribute: `data-cursor="{variantName}"` (e.g., `data-cursor="pointer"`)
+ *
+ * If you want a specific type of element to always trigger a variant, you can add an appropriate query selector to the `selectors` array in the configuration.
+ * For instance, all `<button>` elements trigger the `pointer` variant by default.
  *
  * Special variants:
  * - 'default': The default cursor state
  * - 'exit': Hidden cursor state for when mouse leaves or page becomes hidden
  *
- * To mark an element to trigger a specific variant, you can use either:
- * - A class name: `custom-cursor-{variantName}` (e.g., `custom-cursor-pointer`)
- * - A data attribute: `data-cursor="{variantName}"` (e.g., `data-cursor="pointer"`)
- *
- * If you want a particular type of element to always trigger a variant, you can add it to the `selectors` array in the configuration.
- * For instance, all `<button>` elements trigger the `pointer` variant by default.
- *
  * Example new variant:
  * ```
  * hover: {
  *   animation: { opacity: 0.5, scale: 1.5, height: 32, width: 32 },
- *   selectors: ['.hoverable'] // .custom-cursor-hover and [data-cursor='hover'] are automatic
+ *   selectors: ['.hoverable'] // Add className "hoverable" to any element to trigger this variant
  * }
  * ```
  */
@@ -75,6 +76,18 @@ const cursorConfig: CursorVariants = {
       borderRadius: "100%",
     },
   },
+};
+
+type VariantConfig = {
+  animation: Variant;
+  selectors?: string[];
+};
+
+type CursorVariants = {
+  default: Omit<VariantConfig, "selectors">;
+  exit: Omit<VariantConfig, "selectors">;
+  pointer: VariantConfig;
+  [key: string]: VariantConfig;
 };
 
 // Extract just the animation properties for framer-motion
