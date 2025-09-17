@@ -179,37 +179,14 @@ function CustomCursor({ children, ...props }: React.ComponentProps<"div">) {
     return variantEventListeners;
   }, []);
 
-  const handleDOMChanges = useCallback(
-    (variantEventListeners: ReturnType<typeof setupVariantListeners>) => {
-      return (mutations: MutationRecord[]) => {
-        const hasChanges = mutations.some(
-          (mutation) =>
-            mutation.type === "childList" &&
-            (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0)
-        );
-
-        if (hasChanges) {
-          // Clean up existing listeners
-          for (const {
-            elements,
-            enterHandler,
-            leaveHandler,
-          } of variantEventListeners) {
-            for (const el of elements) {
-              el.removeEventListener("mouseenter", enterHandler);
-              el.removeEventListener("mouseleave", leaveHandler);
-            }
-          }
-
-          // Set up new listeners and return them
-          return setupVariantListeners();
-        }
-
-        return variantEventListeners;
-      };
-    },
-    [setupVariantListeners]
-  );
+  // Debounce function to prevent excessive re-setup
+  const debounce = useCallback((func: () => void, delay: number) => {
+    let timeoutId: NodeJS.Timeout;
+    return () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(func, delay);
+    };
+  }, []);
 
   useEffect(() => {
     const handleGlobalPointerOut = (e: PointerEvent) => {
@@ -225,16 +202,30 @@ function CustomCursor({ children, ...props }: React.ComponentProps<"div">) {
     window.addEventListener("pointerout", handleGlobalPointerOut);
     document.addEventListener("visibilitychange", handleVisibility);
 
-    // Set up variant triggers based on configuration
-    let variantEventListeners = setupVariantListeners();
+    let currentListeners: ReturnType<typeof setupVariantListeners> = [];
+    const refreshListeners = () => {
+      for (const { elements, enterHandler, leaveHandler } of currentListeners) {
+        for (const el of elements) {
+          el.removeEventListener("mouseenter", enterHandler);
+          el.removeEventListener("mouseleave", leaveHandler);
+        }
+      }
+      currentListeners = setupVariantListeners();
+    };
+    refreshListeners();
 
-    // Set up MutationObserver to re-attach listeners when DOM changes (for SPA navigation)
-    const mutationHandler = handleDOMChanges(variantEventListeners);
+    // Refresh listeners on DOM changes (for SPA navigation)
+    const debouncedRefresh = debounce(refreshListeners, 100);
     const observer = new MutationObserver((mutations) => {
-      variantEventListeners = mutationHandler(mutations);
+      const hasRelevantChanges = mutations.some(
+        (mutation) =>
+          mutation.type === "childList" &&
+          (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0)
+      );
+
+      if (hasRelevantChanges) debouncedRefresh();
     });
 
-    // Observe the entire document body for changes
     observer.observe(document.body, {
       childList: true,
       subtree: true,
@@ -245,19 +236,15 @@ function CustomCursor({ children, ...props }: React.ComponentProps<"div">) {
       document.removeEventListener("visibilitychange", handleVisibility);
       observer.disconnect();
 
-      // Clean up variant event listeners
-      for (const {
-        elements,
-        enterHandler,
-        leaveHandler,
-      } of variantEventListeners) {
+      // Clean up all current event listeners
+      for (const { elements, enterHandler, leaveHandler } of currentListeners) {
         for (const el of elements) {
           el.removeEventListener("mouseenter", enterHandler);
           el.removeEventListener("mouseleave", leaveHandler);
         }
       }
     };
-  }, [setupVariantListeners, handleDOMChanges]);
+  }, [setupVariantListeners, debounce]);
 
   return (
     <div onPointerMove={handlePointerMove} {...props}>
