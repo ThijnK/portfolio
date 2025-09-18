@@ -99,7 +99,7 @@ export default function SocialLinks({
         {links.map((link) => (
           <a
             aria-label={link.label}
-            className="text-foreground/60 transition-colors duration-150 hover:text-foreground"
+            className="custom-cursor-pointer text-foreground/60 transition-colors duration-150 hover:text-foreground"
             href={link.href}
             key={link.label}
             rel="noopener noreferrer"

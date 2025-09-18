@@ -68,7 +68,7 @@ const cursorConfig: CursorVariants = {
       width: 12,
       borderRadius: "100%",
     },
-    selectors: ["a", "button", "input", "label"],
+    selectors: ["button", "input", "label"],
   },
   ripple: {
     animation: {
@@ -118,10 +118,58 @@ function CustomCursor({ children, ...props }: React.ComponentProps<"div">) {
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-
-  // Create spring animations that follow the mouse with lag
   const cursorX = useSpring(mouseX, { stiffness: 200, damping: 23 });
   const cursorY = useSpring(mouseY, { stiffness: 200, damping: 23 });
+
+  // Helper function to get all selectors for a variant
+  const getSelectorsForVariant = useCallback(
+    (variantName: string, config: VariantConfig) => {
+      const universalSelectors = [
+        `.custom-cursor-${variantName}`,
+        `[data-cursor='${variantName}']`,
+      ];
+
+      return "selectors" in config && Array.isArray(config.selectors)
+        ? [...config.selectors, ...universalSelectors]
+        : universalSelectors;
+    },
+    []
+  );
+
+  const checkElementUnderCursor = useCallback(
+    (x: number, y: number) => {
+      const elementUnderCursor = document.elementFromPoint(x, y);
+      if (!elementUnderCursor) {
+        setVariant("default");
+        return;
+      }
+
+      // Check if element matches any variant selectors
+      for (const [variantName, config] of Object.entries(cursorConfig)) {
+        if (variantName === "default" || variantName === "exit") continue;
+
+        const selectors = getSelectorsForVariant(variantName, config);
+        const matchesVariant = selectors.some((selector) => {
+          try {
+            return (
+              elementUnderCursor.matches(selector) ||
+              elementUnderCursor.closest(selector)
+            );
+          } catch {
+            return false;
+          }
+        });
+
+        if (matchesVariant) {
+          setVariant(variantName);
+          return;
+        }
+      }
+
+      setVariant("default");
+    },
+    [getSelectorsForVariant]
+  );
 
   const handlePointerMove = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
@@ -157,24 +205,11 @@ function CustomCursor({ children, ...props }: React.ComponentProps<"div">) {
     }> = [];
 
     for (const [variantName, config] of Object.entries(cursorConfig)) {
-      // Always include universal selectors for each variant
-      const universalSelectors = [
-        `.custom-cursor-${variantName}`,
-        `[data-cursor='${variantName}']`,
-      ];
-
-      // Combine with custom selectors if they exist
-      const allSelectors =
-        "selectors" in config && Array.isArray(config.selectors)
-          ? [...config.selectors, ...universalSelectors]
-          : universalSelectors;
-
-      const selector = allSelectors.join(", ");
-      const elements = document.querySelectorAll(selector);
+      const selectors = getSelectorsForVariant(variantName, config);
+      const elements = document.querySelectorAll(selectors.join(", "));
 
       if (elements.length > 0) {
-        const enterHandler = () =>
-          setVariant(variantName as keyof typeof variants);
+        const enterHandler = () => setVariant(variantName);
         const leaveHandler = () => setVariant("default");
 
         variantEventListeners.push({
@@ -192,7 +227,7 @@ function CustomCursor({ children, ...props }: React.ComponentProps<"div">) {
     }
 
     return variantEventListeners;
-  }, []);
+  }, [getSelectorsForVariant]);
 
   // Debounce function to prevent excessive re-setup
   const debounce = useCallback((func: () => void, delay: number) => {
@@ -214,8 +249,17 @@ function CustomCursor({ children, ...props }: React.ComponentProps<"div">) {
         setVariant("exit");
       }
     };
+
+    const handleScroll = () => {
+      // Check what element is under the current cursor position after scroll
+      const currentX = mouseX.get();
+      const currentY = mouseY.get();
+      checkElementUnderCursor(currentX, currentY);
+    };
+
     window.addEventListener("pointerout", handleGlobalPointerOut);
     document.addEventListener("visibilitychange", handleVisibility);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     let currentListeners: ReturnType<typeof setupVariantListeners> = [];
     const refreshListeners = () => {
@@ -249,6 +293,7 @@ function CustomCursor({ children, ...props }: React.ComponentProps<"div">) {
     return () => {
       window.removeEventListener("pointerout", handleGlobalPointerOut);
       document.removeEventListener("visibilitychange", handleVisibility);
+      window.removeEventListener("scroll", handleScroll);
       observer.disconnect();
 
       // Clean up all current event listeners
@@ -259,7 +304,13 @@ function CustomCursor({ children, ...props }: React.ComponentProps<"div">) {
         }
       }
     };
-  }, [setupVariantListeners, debounce]);
+  }, [
+    setupVariantListeners,
+    debounce,
+    checkElementUnderCursor,
+    mouseX,
+    mouseY,
+  ]);
 
   return (
     <div onPointerMove={handlePointerMove} {...props}>
