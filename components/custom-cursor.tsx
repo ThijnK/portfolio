@@ -42,6 +42,8 @@ import React, { type ReactNode, useCallback, useEffect, useState } from "react";
  *   selectors: ['.hoverable'] // Add className "hoverable" to any element to trigger this variant
  * }
  * ```
+ *
+ * @author Thijn Kroon
  */
 const cursorConfig: CursorVariants = {
   default: {
@@ -68,7 +70,7 @@ const cursorConfig: CursorVariants = {
     },
     selectors: ["a", "button", "input", "label"],
   },
-  large: {
+  ripple: {
     animation: {
       opacity: 1,
       height: 48,
@@ -271,9 +273,59 @@ function CustomCursor({ children, ...props }: React.ComponentProps<"div">) {
           translateX: "-50%",
           translateY: "-50%",
         }}
-        transition={{ type: "spring", damping: 14 }}
+        transition={{ type: "spring", damping: 13 }}
         variants={variants}
-      />
+      >
+        {/* Ripple effect */}
+        {variant === "ripple" && (
+          <>
+            <motion.div
+              animate={{
+                scale: [1, 2.5],
+                opacity: [0.6, 0],
+              }}
+              className="absolute inset-0 rounded-full border"
+              initial={{ scale: 1, opacity: 0 }}
+              transition={{
+                duration: 2,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: [0.4, 1, 0.85, 1],
+                repeatDelay: 0.6,
+              }}
+            />
+            <motion.div
+              animate={{
+                scale: [1, 2.5],
+                opacity: [0.5, 0],
+              }}
+              className="absolute inset-0 rounded-full border"
+              initial={{ scale: 1, opacity: 0 }}
+              transition={{
+                duration: 2,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: [0.35, 1, 0.8, 1],
+                repeatDelay: 0.6,
+                delay: 0.3,
+              }}
+            />
+            <motion.div
+              animate={{
+                scale: [1, 2.5],
+                opacity: [0.4, 0],
+              }}
+              className="absolute inset-0 rounded-full border"
+              initial={{ scale: 1, opacity: 0 }}
+              transition={{
+                duration: 2,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: [0.3, 1, 0.75, 1],
+                repeatDelay: 0.6,
+                delay: 0.6,
+              }}
+            />
+          </>
+        )}
+      </motion.div>
       {children}
     </div>
   );

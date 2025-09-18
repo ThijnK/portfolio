@@ -25,7 +25,7 @@ export default function Nav(props: HTMLAttributes<HTMLElement>) {
               <li key={href}>
                 <Link
                   className={cn(
-                    "text-foreground/60 transition-colors duration-150 hover:text-foreground",
+                    "custom-cursor-ripple text-foreground/60 transition-colors duration-150 hover:text-foreground",
                     isActive && "text-foreground"
                   )}
                   href={href}
