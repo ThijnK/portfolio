@@ -188,7 +188,7 @@ export function Link({
   return (
     <Comp
       className={cn(
-        "after:-z-[1] after:-bottom-px custom-cursor-ripple after:-inset-x-px relative after:pointer-events-none after:absolute after:top-0 after:origin-bottom after:scale-y-[0.05] after:bg-foreground after:transition-transform after:duration-150 hover:text-background hover:transition-colors hover:duration-150 hover:after:scale-none",
+        "after:-z-[1] after:-bottom-px custom-cursor-pointer after:-inset-x-px relative after:pointer-events-none after:absolute after:top-0 after:origin-bottom after:scale-y-[0.05] after:bg-foreground after:transition-transform after:duration-150 hover:text-background hover:transition-colors hover:duration-150 hover:after:scale-none",
         className
       )}
       rel={external ? "noopener noreferrer" : undefined}

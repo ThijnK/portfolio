@@ -7,7 +7,7 @@ import { cn } from "@/util/cn";
 export default function Projects() {
   return (
     <Article title="Resume">
-      <ButtonLink download href="/resume/CV_Thijn.pdf">
+      <ButtonLink data-cursor="pointer" download href="/resume/CV_Thijn.pdf">
         <Icon className="size-5 shrink-0" icon="download" />
         <span>Full Version (PDF)</span>
       </ButtonLink>
@@ -16,10 +16,17 @@ export default function Projects() {
         <div>
           <WithSidebar thick>
             <div className="flex items-center justify-between font-bold">
-              <p>QuickCode</p>
+              <a
+                data-cursor="pointer"
+                href="https://www.quickcode.agency/"
+                rel="noreferrer"
+                target="_blank"
+              >
+                QuickCode
+              </a>
               <p className="text-sm">2021 - Present</p>
             </div>
-            <p className="italic">Freelance Developer</p>
+            <p className="italic">Full-Stack Developer</p>
           </WithSidebar>
           <WithSidebar>
             <List>
