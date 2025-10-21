@@ -21,9 +21,11 @@ export default function Home() {
         <Paragraph>
           Feel free to explore my <Link href="/projects">projects</Link> to see
           what I’ve been working on, or check out my{" "}
-          <Link href="/resume">resume</Link> to learn more about my background
-          and experience. Curious how this site was built? The source code’s up
-          on{" "}
+          <Link href="/resume.pdf" rel="noopener noreferrer" target="_blank">
+            resume
+          </Link>{" "}
+          to learn more about my background and experience. Curious how this
+          site was built? The source code’s up on{" "}
           <Link external href="https://github.com/ThijnK/portfolio">
             GitHub
           </Link>
