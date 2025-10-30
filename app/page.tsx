@@ -5,18 +5,21 @@ export default function Home() {
     <Article title="Thijn Kroon">
       <Section>
         <Paragraph>
-          Hi, I’m Thijn—a Computer Science graduate from Utrecht University,
-          with a broad interest in software development. I enjoy working across
-          the stack, from frontend to backend, using a variety of programming
-          languages and technologies. Outside of coding, I like to run, read,
-          and occasionally lose track of time gaming.
+          Hi, I’m Thijn—a software developer who enjoys working across the
+          stack. I take pride in writing code that’s not just functional, but
+          clean, organized, and well-structured. Outside of coding, I like to
+          run, read, and occasionally lose track of time gaming.
         </Paragraph>
         <Paragraph>
-          Alongside my studies, I’ve been working as a freelance developer for
-          about four years, building everything from landing pages and
-          dashboards to Discord bots and automation tools. I graduated magna cum
-          laude from both my bachelor’s and master’s degrees, completing honors
-          programs alongside each.
+          I graduated from Utrecht University with both a bachelor’s and
+          master’s in Computer Science, magna cum laude, and took part in honors
+          programs for each. During my studies, I co-founded{" "}
+          <Link external href="https://quickcode.agency">
+            QuickCode
+          </Link>
+          , a small developer agency, where I’ve spent the past few years
+          working with clients on projects ranging from web apps and dashboards
+          to automation tools, web scrapers, and Discord bots.
         </Paragraph>
         <Paragraph>
           Feel free to explore my <Link href="/projects">projects</Link> to see
@@ -28,10 +31,6 @@ export default function Home() {
           site was built? The source code’s up on{" "}
           <Link external href="https://github.com/ThijnK/portfolio">
             GitHub
-          </Link>
-          . Layout inspired by{" "}
-          <Link external href="https://shud.in/">
-            shud.in
           </Link>
           .
         </Paragraph>
