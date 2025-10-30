@@ -188,7 +188,7 @@ export function Link({
   return (
     <Comp
       className={cn(
-        "after:-z-[1] after:-bottom-px custom-cursor-pointer after:-inset-x-px relative after:pointer-events-none after:absolute after:top-0 after:origin-bottom after:scale-y-[0.05] after:bg-foreground after:transition-transform after:duration-150 hover:text-background hover:transition-colors hover:duration-150 hover:after:scale-none",
+        "after:-z-1 after:-bottom-px custom-cursor-pointer after:-inset-x-px relative after:pointer-events-none after:absolute after:top-0 after:origin-bottom after:scale-y-[0.05] after:bg-foreground after:transition-transform after:duration-150 hover:text-background hover:transition-colors hover:duration-150 hover:after:scale-none",
         className
       )}
       rel={external ? "noopener noreferrer" : undefined}
@@ -246,7 +246,7 @@ export function ButtonLink({
       {/** biome-ignore lint/nursery/useAnchorHref: <href is provided in props> */}
       <a
         className={cn(
-          "after:-z-[1] hover:after:translate-0 relative inline-flex items-center gap-x-2 overflow-hidden border border-foreground/90 px-3 py-1 transition-transform duration-200 after:pointer-events-none after:absolute after:inset-0 after:bg-foreground/90 after:transition-transform after:duration-200 hover:text-background hover:transition-colors active:scale-95",
+          "after:-z-1 hover:after:translate-0 relative inline-flex items-center gap-x-2 overflow-hidden border border-foreground/90 px-3 py-1 transition-transform duration-200 after:pointer-events-none after:absolute after:inset-0 after:bg-foreground/90 after:transition-transform after:duration-200 hover:text-background hover:transition-colors active:scale-95",
           origins[origin] === "top" && "after:-translate-y-full",
           origins[origin] === "right" && "after:translate-x-full",
           origins[origin] === "bottom" && "after:translate-y-full",
