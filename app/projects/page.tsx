@@ -12,8 +12,9 @@ export default function Projects() {
     <Article title="Projects">
       <Section
         badge={{
-          src: "/projects/alpha-warden.png",
+          icon: "aw",
           label: "Alpha Warden Logo",
+          className: "size-8",
         }}
         href="https://alphawarden.com"
         title="Alpha Warden"

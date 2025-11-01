@@ -65,6 +65,77 @@ const Icons = {
       <path d="M200,164a36.07,36.07,0,0,0-33.94,24H72a28,28,0,0,1,0-56h96a44,44,0,0,0,0-88H72a12,12,0,0,0,0,24h96a20,20,0,0,1,0,40H72a52,52,0,0,0,0,104h94.06A36,36,0,1,0,200,164Zm0,48a12,12,0,1,1,12-12A12,12,0,0,1,200,212Z" />
     </svg>
   ),
+  aw: (props: SVGProps<SVGSVGElement>) => (
+    <svg
+      fill="none"
+      height="512"
+      viewBox="0 0 512 512"
+      width="512"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <title>Alpha Warden Logo</title>
+      <path
+        d="M251.088 49.5845L81.088 104.423C74.4792 106.555 69.9878 112.757 70.0596 119.701C71.8338 291.249 113.609 388.16 248.666 460.161C253.22 462.589 258.78 462.589 263.334 460.161C398.391 388.16 440.166 291.249 441.94 119.701C442.012 112.757 437.521 106.555 430.912 104.423L260.912 49.5845C257.718 48.5543 254.282 48.5543 251.088 49.5845Z"
+        stroke="url(#paint0_radial_5_4)"
+        strokeLinejoin="round"
+        strokeWidth="24"
+      />
+      <path
+        d="M256 86.8278L109.555 134.848C109.555 280.509 142.623 360.542 256 419.767C369.377 360.542 402.445 280.509 402.445 134.848L256 86.8278Z"
+        fill="url(#paint1_radial_5_4)"
+      />
+      <mask
+        className="mask-type-alpha"
+        height="334"
+        id="mask0_5_4"
+        maskUnits="userSpaceOnUse"
+        width="294"
+        x="109"
+        y="86"
+      >
+        <path
+          d="M256 86.8278L109.555 134.848C109.555 280.509 142.623 360.542 256 419.767C369.377 360.542 402.445 280.509 402.445 134.848L256 86.8278Z"
+          fill="white"
+        />
+      </mask>
+      <g mask="url(#mask0_5_4)">
+        <path
+          d="M355.251 345.021L292 345V322.622C442 250 355.251 103.858 256 99.9366C156.461 96.004 70 250 220 322.622V345H156.384M355.251 345.021L256 90L156.384 345M355.251 345.021L379.982 408.564M156.384 345L131.851 408.564M112 460L131.851 408.564M400 460L379.982 408.564M379.982 408.564H131.851"
+          stroke="white"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeOpacity="0.4"
+          strokeWidth="24"
+        />
+      </g>
+      <defs>
+        <radialGradient
+          cx="0"
+          cy="0"
+          gradientTransform="translate(88.1386 110.622) rotate(32.2715) scale(396.254 271.486)"
+          gradientUnits="userSpaceOnUse"
+          id="paint0_radial_5_4"
+          r="1"
+        >
+          <stop stopColor="#A1D8FF" />
+          <stop offset="1" stopColor="#326DF5" />
+        </radialGradient>
+        <radialGradient
+          cx="0"
+          cy="0"
+          gradientTransform="translate(141.514 139.56) rotate(32.0982) scale(308.015 309.586)"
+          gradientUnits="userSpaceOnUse"
+          id="paint1_radial_5_4"
+          r="1"
+        >
+          <stop stopColor="#A1D8FF" />
+          <stop offset="0.55" stopColor="#326DF5" />
+          <stop offset="1" stopColor="#7529DE" />
+        </radialGradient>
+      </defs>
+    </svg>
+  ),
 };
 
 export type IconKey = keyof typeof Icons;
