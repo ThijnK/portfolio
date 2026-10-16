@@ -20,19 +20,15 @@ export default function Projects() {
         title="Alpha Warden"
       >
         <Paragraph>
-          Alpha Warden is a Discord moderation bot trusted by 300+ servers to
-          prevent bot attacks and manage access control with features like
-          token-restricted roles and emoji verification. Its modern web
-          dashboard makes it easy for server admins to configure and control the
-          bot.
+          I built and maintain Alpha Warden, a Discord moderation platform used
+          by 300+ servers. It helps communities prevent bot attacks and manage
+          access through token-restricted roles and verification challenges,
+          with a web dashboard for configuration and moderation.
         </Paragraph>
         <Paragraph>
-          As the sole developer, this project has given me hands-on experience
-          with a range of technologies and practices—building a full-stack app
-          with TypeScript, discord.js, and Next.js, working with SQL and NoSQL
-          databases, implementing user authentication, and managing deployment,
-          hosting, and ongoing maintenance. It’s been a great exercise in
-          building and operating a production-ready system.
+          I developed the bot and dashboard independently using TypeScript,
+          discord.js, and Next.js. I also handle the databases, authentication,
+          deployment, and ongoing operation of the service.
         </Paragraph>
       </Section>
 
@@ -42,17 +38,24 @@ export default function Projects() {
         title="MAZE"
       >
         <Paragraph>
-          MAZE is a dynamic symbolic execution engine for automated Java test
-          generation. It analyzes JVM bytecode, systematically explores program
-          paths using a mix of symbolic and concrete execution, and generates
-          targeted unit tests to maximize code coverage.
+          MAZE is a dynamic symbolic execution engine I designed and built for
+          automated Java test generation. It analyzes JVM bytecode and combines
+          symbolic and concrete execution to explore program paths and generate
+          test inputs.
         </Paragraph>
         <Paragraph>
-          I developed MAZE as part of my master’s thesis at Utrecht University.
-          Written in Java, it supports various search strategies to explore
-          program paths and can handle complex data structures. The thesis
-          focuses on comparing the effectiveness of these strategies in
-          achieving high code- and mutation coverage.
+          I developed it for my{" "}
+          <Link
+            external
+            href="https://studenttheses.uu.nl/items/3b006e4a-5874-45b5-84a4-41aa495aba8c"
+          >
+            master’s thesis
+          </Link>{" "}
+          at Utrecht University. Its modular architecture lets different search
+          strategies be configured and combined. I formally defined its
+          execution semantics and evaluated the strategies on a custom benchmark
+          suite, studying how the choice of strategy affects the tests it
+          generates.
         </Paragraph>
       </Section>
 
@@ -65,72 +68,41 @@ export default function Projects() {
         title="SecureSECO DAO"
       >
         <Paragraph>
-          As part of my bachelor thesis, I worked in a team of eight to develop
-          SecureSECO DAO—a decentralized autonomous organization for{" "}
+          I co-developed a decentralized autonomous organization for{" "}
           <Link external href="https://secureseco.org">
             SecureSECO
-          </Link>
-          . My main focus was developing the web application and documentation
-          site. Our work earned 2nd place in the DAO Global Hackathon 2023.
+          </Link>{" "}
+          in a team of eight during my bachelor’s software project. My focus was
+          the web application and documentation. I also coauthored a{" "}
+          <Link external href="https://doi.org/10.3389/fbloc.2024.1481914">
+            peer-reviewed paper
+          </Link>{" "}
+          on community-governed smart-contract upgrades, using SecureSECO DAO as
+          the case study.
         </Paragraph>
-      </Section>
-
-      <Section
-        badge={{ icon: "discord" }}
-        href="https://github.com/ThijnK/discord-bot-template-ts"
-        title="Discord Bot Template"
-      >
         <Paragraph>
-          Having built my fair share of Discord bots, I developed a preferred
-          project structure and several reusable utilities. I wanted to share
-          this with the community, so I created a template that anyone can use
-          to kickstart their own Discord bot project—complete with slash
-          commands, event handling, pagination, and more, all written in
-          TypeScript and now updated to run on Deno 2.
+          The DAO web app template I co-developed with QuickCode for this
+          project was one of two winners in Aragon’s{" "}
+          <Link
+            external
+            href="https://blog.aragon.org/dao-global-hackathon-bounty-winners/"
+          >
+            Best Quickstart dApp
+          </Link>{" "}
+          category at the 2023 DAO Global Hackathon.
         </Paragraph>
       </Section>
 
-      <Section badge={{ icon: "projects" }} title="Other Projects">
+      <Section badge={{ icon: "projects" }} title="Other experiments">
         <List>
-          <ListItem>Numerous automations and web scraping tools</ListItem>
+          <ListItem>TI-BASIC 83 parser and interpreter in Haskell</ListItem>
+          <ListItem>Bounded symbolic verifier for GCL in Haskell</ListItem>
+          <ListItem>Raytracer and rasterizer in C#</ListItem>
           <ListItem>
             <Link external href="https://github.com/ThijnK/three-boids">
-              Three.js Boids
+              Boids flocking simulation
             </Link>{" "}
-            simulation in Next.js
-          </ListItem>
-          <ListItem>Email inbox aggregator service (IMAP-based)</ListItem>
-          <ListItem>
-            <Link
-              external
-              href="https://github.com/ThijnK/discord-server-cleaner"
-            >
-              Discord Server Cleaner
-            </Link>{" "}
-            bot
-          </ListItem>
-          <ListItem variants={undefined}>
-            University course projects:
-            <List>
-              <ListItem>
-                Rust REST API and Python Kafka consumer (deployed to the cloud
-                with Kubernetes and monitored using Prometheus + Grafana)
-              </ListItem>
-              <ListItem>EV charging simulation in C#</ListItem>
-              <ListItem>
-                Compiler and abstract machine for TI-BASIC 83 in Haskell
-              </ListItem>
-              <ListItem>
-                Bounded symbolic verification tool for GCL in Haskell
-              </ListItem>
-              <ListItem>
-                <Link external href="https://github.com/ThijnK/Shoot-Em-Up">
-                  Shoot-em-up
-                </Link>{" "}
-                game in Haskell
-              </ListItem>
-              <ListItem>Raytracer and rasterizer in C#</ListItem>
-            </List>
+            with Three.js and Next.js
           </ListItem>
         </List>
       </Section>
