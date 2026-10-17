@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { type HTMLAttributes, useEffect, useRef, useState } from "react";
 import { Icon, type IconKey } from "@/components/icons";
+import MarginCreature from "@/components/margin-creature";
 import { cn } from "@/util/cn";
 
 const links: {
@@ -89,12 +90,14 @@ export default function SocialLinks({
       <div className="xs:hidden h-px w-full bg-foreground/15" />
       <motion.div
         animate={{ height }}
-        className="xs:block hidden w-px bg-foreground/15"
+        className="relative xs:block hidden w-px bg-foreground/15"
         transition={{
           duration: 0.4,
           ease: [0.2, 0.1, 0.3, 1],
         }}
-      />
+      >
+        {height >= 80 && <MarginCreature />}
+      </motion.div>
       <div className="flex w-fit xs:flex-col gap-2.5 xs:pt-2" ref={linksRef}>
         {links.map((link) => (
           <a
