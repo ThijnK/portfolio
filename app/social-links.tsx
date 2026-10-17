@@ -96,7 +96,7 @@ export default function SocialLinks({
           ease: [0.2, 0.1, 0.3, 1],
         }}
       >
-        {height >= 80 && <MarginCreature />}
+        {height >= 180 && <MarginCreature />}
       </motion.div>
       <div className="flex w-fit xs:flex-col gap-2.5 xs:pt-2" ref={linksRef}>
         {links.map((link) => (
